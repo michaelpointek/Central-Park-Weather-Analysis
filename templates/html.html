@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York City Weather Analysis 1912 to Present</title>
+</head>
+<body>
+
+    <div id="weatherData"></div>
+
+    <script>
+        // Fetch data from the Flask API endpoint
+        fetch('/api/data')
+            .then(response => response.json())
+            .then(data => {
+                const weatherDataElement = document.getElementById('weatherData');
+                weatherDataElement.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

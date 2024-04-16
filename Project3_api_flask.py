@@ -1,73 +1,54 @@
-# Import the dependencies.
-import numpy as np
-import datetime as dt
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
+
+from flask import Flask, jsonify, render_template
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func, text
-from flask import Flask, jsonify
+from sqlalchemy.ext.automap import automap_base
 
-
-#################################################
-# Database Setup
-#################################################
-
-# Create the connection string
-connection_string = "postgresql://postgres:postgres@localhost:5432/project3"
-
-# Create the engine using the connection string
-engine = create_engine(connection_string)
-#connect to engine 
-conn = engine.connect()
-
-# Declare a Base using `automap_base()`
-Base = automap_base()
-# Use the Base class to reflect the database tables
-Base.prepare(engine, reflect=True)
-# Save references as NyWeatherDataSet
-NyWeatherDataSet = Base.classes.ny_weather_data_set
-
-query = text("Select * from ny_weather_data_set")
-data = conn.execute(query)
-print(data)
-
-#################################################
 # Flask Setup
-#################################################
 app = Flask(__name__)
 
-#################################################
-# Flask Routes
-#################################################
+# Database Setup
+connection_string = "postgresql://postgres:postgres@localhost:5432/project3"
+engine = create_engine(connection_string)
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+NyWeatherDataSet = Base.classes.ny_weather_data_set
 
+# Flask Routes
 # @app.route('/')
 # def home():
-#     return "Welcome to NY Weather API!"
+#     # Render the HTML template
+#     return render_template('html.html')
 
-# @app.route('/api/data')
-# def get_data():
-#     # Create a session to query the database
-#     session = Session(engine)
+@app.route('/')
+def get_data():
+    # Create a session to query the database
+    session = Session(engine)
 
-#     # Query the ny_weather_data_set and fetch the data
-#     results = session.query(NyWeatherDataSet.date, NyWeatherDataSet.prcp, NyWeatherDataSet.snow, ).all()
+    # Query the ny_weather_data_set and fetch the data
+    results = session.query(NyWeatherDataSet.date, NyWeatherDataSet.prcp, NyWeatherDataSet.snow,
+                            NyWeatherDataSet.snwd, NyWeatherDataSet.tmin, NyWeatherDataSet.tmax).all()
 
-#     # Close the session
-#     session.close()
+    # Close the session
+    session.close()
 
-#     # Convert the results to a list of dictionaries
-#     data = []
-#     for result in results:
-#         data.append({
-#             "column1": result.column1,
-#             "column2": result.column2
-#         })
+    # Convert the results to a list of dictionaries
+    data = []
+    for result in results:
+        data.append({
+            "Date": result.date,
+            "Precipitation": result.prcp,
+            "Snow": result.snow,
+            "SNWD": result.snwd,
+            "Minimum Temperature": result.tmin,
+            "Maximum Temperature": result.tmax,
+        })
 
-#     # Return the data as JSON
-#     return jsonify(data)
+    # Return the data as JSON
+    return jsonify(data)
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=False)
 
 
 
