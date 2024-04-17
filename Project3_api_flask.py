@@ -14,12 +14,6 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 NyWeatherDataSet = Base.classes.ny_weather_data_set
 
-# Flask Routes
-# @app.route('/')
-# def home():
-#     # Render the HTML template
-#     return render_template('html.html')
-
 @app.route('/')
 def get_data():
     # Create a session to query the database
@@ -39,7 +33,7 @@ def get_data():
             "Date": result.date,
             "Precipitation": result.prcp,
             "Snow": result.snow,
-            "SNWD": result.snwd,
+            "Snow Depth": result.snwd,
             "Minimum Temperature": result.tmin,
             "Maximum Temperature": result.tmax,
         })
