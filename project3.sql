@@ -2,7 +2,7 @@ create table ny_weather_data_set (
 	id date PRIMARY KEY,
 	prcp float,
 	snow float,
-	sndw float,
+	snwd float,
 	tmin INT,
 	tmax INT
 );
