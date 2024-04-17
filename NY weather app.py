@@ -16,8 +16,6 @@ from config import user, password
 # Database Setup
 #################################################
 
-#create postgres connection
-#connection_string = "postgresql://postgres:postgres@localhost:5432/Project 3"
 
 #create engine
 #engine = create_engine(connection_string).connect()
