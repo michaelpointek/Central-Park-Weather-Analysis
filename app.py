@@ -63,10 +63,6 @@ def get_annual_avg(extremum):
 
     return jsonify({"Year":year, "Average":avg})
 
-
-
-
-
 if __name__ == '__main__':
     app.run()
 
