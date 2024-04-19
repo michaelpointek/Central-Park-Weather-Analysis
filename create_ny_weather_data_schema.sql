@@ -1,20 +1,14 @@
-create table ny_weather_data_set (
-	date date PRIMARY KEY,
-	prcp float,
-	snow float,
-	sndw float,
-	tmin INT,
-	tmax INT
-);
+SELECT * FROM ny_weather_data_set
 
-delete from ny_weather_data_set
-where sndw IS NULL;
 
-delete from ny_weather_data_set
-where snow IS NULL;
+ALTER TABLE ny_weather_data_set
+ADD COLUMN year INT,
+ADD COLUMN month INT,
+ADD COLUMN day INT;
 
-alter table ny_weather_data_set
-rename sndw to snwd; 
+UPDATE ny_weather_data_set
+SET
+    year = EXTRACT(YEAR FROM date),
+    month = EXTRACT(MONTH FROM date),
+    day = EXTRACT(DAY FROM date);
 
-SELECT * 
-FROM ny_weather_data_set;
