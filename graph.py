@@ -30,6 +30,9 @@ def get_data():
     # Return the data as JSON
     return data
 
+#precipitation over the seasons of decades 
+
+# precipitation over the years spring
 data = get_data()
 precipitation = []
 decades = []
@@ -53,17 +56,89 @@ plt.xlabel("Year")
 plt.ylabel("Average Precipitation")
 plt.show()
 
-for entry in data:
-    year,month,day = str(entry["Date"]).split("-")
-    print(year,month,day)
-    if month in spring_months:
-        precipitation.append(entry["Precipitation"])
-        date.append(entry["Date"])
-        print(entry["Precipitation"])
-plt.plot(date, precipitation) 
+# precipitation over the years summer
+data = get_data()
+precipitation = []
+decades = []
+decade_summer_averages = []
+summer_months = ["06","07","08"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Precipitation"]
+        if month in summer_months:
+            precipitation.append(data[j]["Precipitation"])
+            print(data[j]["Precipitation"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_summer_averages.append(running_sum / 3650)
+print(decade_summer_averages)
+plt.plot(decades, decade_summer_averages) 
 plt.xlabel("Year")
-plt.ylabel("Precipitation")
+plt.ylabel("Average Precipitation")
 plt.show()
+
+# precipitation over the years fall
+data = get_data()
+precipitation = []
+decades = []
+decade_fall_averages = []
+fall_months = ["09","10","11"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Precipitation"]
+        if month in fall_months:
+            precipitation.append(data[j]["Precipitation"])
+            print(data[j]["Precipitation"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_fall_averages.append(running_sum / 3650)
+print(decade_fall_averages)
+plt.plot(decades, decade_fall_averages) 
+plt.xlabel("Year")
+plt.ylabel("Average Precipitation")
+plt.show()
+
+# precipitation over the years winter
+data = get_data()
+precipitation = []
+decades = []
+decade_winter_averages = []
+winter_months = ["12","01","02"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Precipitation"]
+        if month in winter_months:
+            precipitation.append(data[j]["Precipitation"])
+            print(data[j]["Precipitation"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_winter_averages.append(running_sum / 3650)
+print(decade_winter_averages)
+plt.plot(decades, decade_winter_averages) 
+plt.xlabel("Year")
+plt.ylabel("Average Precipitation")
+plt.show()
+
+# for entry in data:
+#     year,month,day = str(entry["Date"]).split("-")
+#     print(year,month,day)
+#     if month in spring_months:
+#         precipitation.append(entry["Precipitation"])
+#         date.append(entry["Date"])
+#         print(entry["Precipitation"])
+# plt.plot(date, precipitation) 
+# plt.xlabel("Year")
+# plt.ylabel("Precipitation")
+# plt.show()
 
 # summer_months = ["06","07","08"]
 # tmax = []
