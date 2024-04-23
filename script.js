@@ -18,3 +18,39 @@ function populatePlot(value) {
     Plotly.newPlot("bar", data, layout);
   });
 }
+
+function populateSeasonal() {
+  let seasons = getCheckedBoxes("form-check-input");
+  var param = document.querySelector('input[name="flexRadio"]:checked').value;
+  console.log("param: " + param + ", seasons: " + seasons);
+  seasons.forEach((season) => {
+    const url = "http://127.0.0.1:5000/api/seasonal/" + param + "/" + season;
+
+    d3.json(url).then(function (result) {
+      let data = [
+        {
+          x: result.year,
+          y: result.average,
+          type: "scatter",
+        },
+      ];
+      let layout = {
+        title: "Average " + param + " of " + season,
+        xaxis: { title: { text: "Year" } },
+        yaxis: { title: { text: param } },
+      };
+      Plotly.newPlot("bar2", data, layout);
+    });
+  });
+}
+
+function getCheckedBoxes(chkboxClassName) {
+  var checkboxes = document.getElementsByClassName(chkboxClassName);
+  var checkboxesChecked = [];
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      checkboxesChecked.push(checkboxes[i].value);
+    }
+  }
+  return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+}
