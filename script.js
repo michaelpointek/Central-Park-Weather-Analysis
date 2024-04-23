@@ -46,10 +46,14 @@ function fetchData() {
                   }
               });
                
-              // try to edit to get a better popup 
-              alert(`Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F\nHighest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F`);
-    
-              
+               // Show temperature summary in Bootstrap Modal
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <p>Selected Month: ${selectedMonth}</p>
+                <p>Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F</p>
+                <p>Highest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F</p>
+            `;
+            new bootstrap.Modal(document.getElementById('temperature-modal')).show();
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -58,6 +62,9 @@ function fetchData() {
           console.error('Error fetching data:', error);
       });
 }
+
+// Attach event listener to the button
+document.getElementById('fetch-data-btn').addEventListener('click', fetchData);
 
 // Call fetchData function when the button is clicked
 document.getElementById('fetch-data-btn').addEventListener('click', fetchData);

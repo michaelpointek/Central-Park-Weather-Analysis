@@ -9,14 +9,18 @@
     <!-- Include D3.js and Plotly.js libraries -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script
+      src=“https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js”
+      integrity=“sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz”
+      crossorigin=“anonymous”
+    ></script>
     <link
       href=“https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css”
       rel=“stylesheet”
       integrity=“sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN”
       crossorigin=“anonymous”
     />
-    <!-- Include custom JavaScript file -->
-    <script src="script.js"></script>
+   
 </head>
 <body>
     <h1>New York City Weather Analysis</h1>
@@ -52,6 +56,25 @@
     <h2>Summary Statistics</h2>
     <div id="summary-stats"></div>
 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#temperature-modal">
+        Launch demo modal
+      </button>
+
+    <!-- Bootstrap Modal for displaying temperature summary -->
+    <div class="modal fade" id="temperature-modal" tabindex="-1" aria-labelledby="temperatureModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="temperatureModalLabel">Temperature Summary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    "modal body"
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Filter data by temperature range -->
     <h2>Data Filtering</h2>
@@ -67,6 +90,9 @@
     <!-- Display bar graph visualization -->
     <h2>Bar Graph Visualization</h2>
     <canvas id="bar-graph"></canvas>
+
+     <!-- Include custom JavaScript file -->
+     <script src="script.js"></script>
 
 </body>
 </html>
