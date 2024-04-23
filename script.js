@@ -21,6 +21,38 @@ function fetchData() {
       .then(data => {
           // Log the fetched data to the console
           console.log(data);
+          //new: 
+              // Initialize variables for minimum and maximum temperatures
+              let minTemp = Infinity;
+              let minTempDay = '';
+              let maxTemp = -Infinity;
+              let maxTempDay = '';
+    
+              // Iterate through each day object in the data array
+              data.forEach(day => {
+                  const temperature = day['Maximum Temperature'];
+                  const dayNumber = day['Day'];
+                  
+                  // Update minimum temperature if current temperature is lower
+                  if (temperature < minTemp) {
+                      minTemp = temperature;
+                      minTempDay = dayNumber;
+                  }
+    
+                  // Update maximum temperature if current temperature is higher
+                  if (temperature > maxTemp) {
+                      maxTemp = temperature;
+                      maxTempDay = dayNumber;
+                  }
+              });
+               
+              // try to edit to get a better popup 
+              alert(`Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F\nHighest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F`);
+    
+              
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
       })
       .catch(error => {
           console.error('Error fetching data:', error);
