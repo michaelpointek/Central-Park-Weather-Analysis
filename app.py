@@ -100,19 +100,19 @@ def get_annual_avg(extremum):
 @app.route("/api/seasons/<year>")
 @cross_origin(supports_credentials=True)
 def seasons_data(year):
-    query1 = text("SELECT year, season, AVG(snow) as avg_snow FROM (SELECT year, CASE " +
+    query1 = text("SELECT year, season,  AVG(snow) as avg_snow, AVG(prcp) as avg_prcp, AVG(tmin) as avg_tmin, AVG(tmax) as avg_tmax FROM (SELECT year, CASE " +
                                     "WHEN month IN (12, 1, 2) THEN 'Winter' " +
                                     "WHEN month IN (3, 4, 5) THEN 'Spring' " +
                                     "WHEN month IN (6, 7, 8) THEN 'Summer' " +
                                     "WHEN month IN (9, 10, 11) THEN 'Fall' " +
                                 "END AS season, " +
-                                "snow " +
+                                "snow, prcp, tmin, tmax " +
                            "FROM " +
                                 "public.ny_weather_data_set " +
                         ") AS seasons " +
                         "WHERE " +
                             "year =  "  + year + 
-                        "GROUP BY " +
+                        " GROUP BY " +
                             "year, season " +
                         "ORDER BY " +
                             "year, season;"
@@ -123,15 +123,23 @@ def seasons_data(year):
     year = []
     season=[]
     avg_snow=[]
+    avg_prcp=[]
+    avg_tmin=[]
+    avg_tmax=[]
     for i in results:
         year.append(i.year)
         season.append(i.season)
         avg_snow.append(i.avg_snow)
-    return jsonify({"year": year, "season":season, "avg_snow":avg_snow})
+        avg_prcp.append(i.avg_prcp)
+        avg_tmin.append(i.avg_tmin)
+        avg_tmax.append(i.avg_tmax)
+
+        
+    return jsonify({"year": year, "season":season, "avg_snow":avg_snow, "avg_prcp": avg_prcp, "avg_tmin": avg_tmin, "avg_tmax": avg_tmax})
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
  
 
 
