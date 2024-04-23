@@ -9,18 +9,143 @@
     <!-- Include D3.js and Plotly.js libraries -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <script
-      src=“https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js”
-      integrity=“sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz”
-      crossorigin=“anonymous”
-    ></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Include custom JavaScript file -->
-    <script src="script.js"></script>
-</head>
-<body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container">
     <h1>New York City Weather Analysis</h1>
-    
+
+    <label>Select:</label>
+    <select id="annual-avg" onchange="populatePlot(this.value)">
+      <option value="tmin">Average Min</option>
+      <option value="tmax">Average Max</option>
+    </select>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bar"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="winter"
+            id="flexCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexCheckChecked">
+            Winter
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="spring"
+            id="flexCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexCheckChecked">
+            Spring
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="summer"
+            id="flexCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexCheckChecked">
+            Summer
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="fall"
+            id="flexCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexCheckChecked"> Fall </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-check">
+          <input
+            value="prcp"
+            type="radio"
+            name="flexRadio"
+            id="flexRadioDefault1"
+            checked
+          />
+          <label class="form-check-label" for="flexRadioDefault1"> prcp </label>
+        </div>
+        <div class="form-check">
+          <input
+            value="snow"
+            type="radio"
+            name="flexRadio"
+            id="flexRadioDefault2"
+          />
+          <label class="form-check-label" for="flexRadioDefault2"> snow </label>
+        </div>
+        <div class="form-check">
+          <input
+            value="snwd"
+            type="radio"
+            name="flexRadio"
+            id="flexRadioDefault2"
+          />
+          <label class="form-check-label" for="flexRadioDefault2"> snwd </label>
+        </div>
+        <div class="form-check">
+          <input
+            value="tmin"
+            type="radio"
+            name="flexRadio"
+            id="flexRadioDefault2"
+          />
+          <label class="form-check-label" for="flexRadioDefault2"> tmin </label>
+        </div>
+        <div class="form-check">
+          <input
+            value="tmax"
+            type="radio"
+            name="flexRadio"
+            id="flexRadioDefault2"
+          />
+          <label class="form-check-label" for="flexRadioDefault2"> tmax </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          onclick="populateSeasonal()"
+        >
+          Plot
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bar2"></div>
+      </div>
+    </div>
     <!-- Dropdown for selecting month -->
     <label for="month-select">Select Month:</label>
     <select id="month-select">

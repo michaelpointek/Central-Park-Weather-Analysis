@@ -110,37 +110,29 @@ def get_annual_avg(extremum):
         year.append(int(result.year))
         avg.append(result.avg)
 
-    return jsonify({"Year": year, "Average": avg})
+    return jsonify({"Year":year, "Average":avg})
 
-@app.route("/api/seasons/<year>")
+
+@app.route("/api/seasonal/<param>/<season>")
 @cross_origin(supports_credentials=True)
-def seasons_data(year):
-    query1 = text("SELECT year, season, AVG(snow) as avg_snow FROM (SELECT year, CASE " +
-                                    "WHEN month IN (12, 1, 2) THEN 'Winter' " +
-                                    "WHEN month IN (3, 4, 5) THEN 'Spring' " +
-                                    "WHEN month IN (6, 7, 8) THEN 'Summer' " +
-                                    "WHEN month IN (9, 10, 11) THEN 'Fall' " +
-                                "END AS season, " +
-                                "snow " +
-                           "FROM " +
-                                "public.ny_weather_data_set " +
-                        ") AS seasons " +
-                        "WHERE " +
-                            "year =  "  + year + 
-                        "GROUP BY " +
-                            "year, season " +
-                        "ORDER BY " +
-                            "year, season")
-    conn = engine.connect()
-    results = conn.execute(query1)
+def seasonal_data(param, season):
+    months = "";
+    if season=="winter": months = "12, 1, 2"
+    if season=="spring": months = "3, 4, 5"
+    if season =="summer": months = "6, 7, 8"
+    if season =="fall": months = "9, 10, 1"
+
+    query = text("SELECT year, AVG(" + param + ") AS avg FROM ny_weather_data_set WHERE month IN (" + months + ") GROUP BY year order by year asc;")
+    conn = engine.connect();
+    results = conn.execute(query);
+    # print(results)
     year = []
-    season = []
-    avg_snow = []
+    avg = []
     for i in results:
         year.append(i.year)
-        season.append(i.season)
-        avg_snow.append(i.avg_snow)
-    return jsonify({"year": year, "season": season, "avg_snow": avg_snow})
+        avg.append(i.avg)
+    return jsonify({"year": year, "average":avg})
+
 
 if __name__ == '__main__':
     app.run(debug=False)

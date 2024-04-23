@@ -48,5 +48,40 @@ function fetchData() {
           console.error('Error fetching data:', error);
       });
 }
-// Call fetchData function when the button is clicked
-document.getElementById('fetch-data-btn').addEventListener('click', fetchData);
+
+function populateSeasonal() {
+  let seasons = getCheckedBoxes("form-check-input");
+  var param = document.querySelector('input[name="flexRadio"]:checked').value;
+  console.log("param: " + param + ", seasons: " + seasons);
+
+  data = [];
+  seasons.forEach((season) => {
+    const url = "http://127.0.0.1:5000/api/seasonal/" + param + "/" + season;
+    d3.json(url).then(function (result) {
+      data.push({
+        x: result.year,
+        y: result.average,
+        type: "scatter",
+      });
+    });
+  });
+  setTimeout(() => {
+    let layout = {
+      title: "Average " + param + " of " + seasons,
+      xaxis: { title: { text: "Year" } },
+      yaxis: { title: { text: param } },
+    };
+    Plotly.newPlot("bar2", data, layout);
+  }, 1000);
+}
+
+function getCheckedBoxes(chkboxClassName) {
+  var checkboxes = document.getElementsByClassName(chkboxClassName);
+  var checkboxesChecked = [];
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      checkboxesChecked.push(checkboxes[i].value);
+    }
+  }
+  return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+}
