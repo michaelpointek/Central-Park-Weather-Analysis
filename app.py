@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS, cross_origin
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
-from config import user, password
+from config import conn
 from datetime import datetime
 from sqlalchemy.sql.expression import func
 
@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 # Database Setup
-connection_string = f"postgresql://{user}:{password}@localhost:5432/project3"
+connection_string = "postgresql://postgres:postgres@localhost:5432/project_3"
 engine = create_engine(connection_string)
 Base = automap_base()
 Base.prepare(engine, reflect=True)
