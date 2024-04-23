@@ -62,3 +62,28 @@
     <canvas id="bar-graph"></canvas>
 </body>
 </html>
+
+
+<!-- bar graph for precipitation over the seasons of decades -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plotting Precipitation</title>
+  <!-- Include Plotly.js library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="bar"></div> <!-- This is where the plot will be rendered -->
+  
+  <!-- Include your JavaScript file -->
+  <script src="script.js"></script>
+  
+  <!-- Call the function -->
+  <script>
+    populatePlot("Precipitation");
+  </script>
+</body>
+</html>
