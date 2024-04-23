@@ -4,6 +4,26 @@ const data = "http://127.0.0.1:5000/";
 d3.json(data).then(function(data) {
   console.log(data);
 });
+populatePlot("tmin");
+
+function populatePlot(value) {
+  const url = "http://127.0.0.1:5000/api/annual-average/" + value;
+
+  d3.json(url).then(function (result) {
+    let data = [
+      {
+        x: result.Year,
+        y: result.Average,
+      },
+    ];
+    let layout = {
+      title: "Annual average of 154 years",
+      xaxis: { title: { text: "Year" } },
+      yaxis: { title: { text: "Temperature (Fahrenheit)" } },
+    };
+    Plotly.newPlot("bar", data, layout);
+  });
+}
 // Function to fetch data based on user input and log it to the console
 function fetchData() {
   // Get selected month and year from the dropdown and input field
@@ -54,7 +74,7 @@ function populateSeasonal() {
   var param = document.querySelector('input[name="flexRadio"]:checked').value;
   console.log("param: " + param + ", seasons: " + seasons);
 
-  data = [];
+  let data = [];
   seasons.forEach((season) => {
     const url = "http://127.0.0.1:5000/api/seasonal/" + param + "/" + season;
     d3.json(url).then(function (result) {
@@ -126,14 +146,5 @@ function fetchData() {
                 <p>Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F</p>
                 <p>Highest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F</p>
             `;
-      new bootstrap.Modal(document.getElementById("temperature-modal")).show();
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}
-// Call fetchData function when the button is clicked
-document.getElementById("fetch-data-btn").addEventListener("click", fetchData);
+         })
+};
