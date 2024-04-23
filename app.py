@@ -64,7 +64,25 @@ def get_annual_avg(extremum):
     return jsonify({"Year":year, "Average":avg})
 
 
+@app.route("/api/seasonal/<param>/<season>")
+@cross_origin(supports_credentials=True)
+def seasonal_data(param, season):
+    months = "";
+    if season=="winter": months = "12, 1, 2"
+    if season=="spring": months = "3, 4, 5"
+    if season =="summer": months = "6, 7, 8"
+    if season =="fall": months = "9, 10, 1"
 
+    query = text("SELECT year, AVG(" + param + ") AS avg FROM ny_weather_data_set WHERE month IN (" + months + ") GROUP BY year order by year asc;")
+    conn = engine.connect();
+    results = conn.execute(query);
+    # print(results)
+    year = []
+    avg = []
+    for i in results:
+        year.append(i.year)
+        avg.append(i.avg)
+    return jsonify({"year": year, "average":avg})
 
 
 if __name__ == '__main__':
