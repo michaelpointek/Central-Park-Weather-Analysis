@@ -21,6 +21,41 @@
     />
   </head>
   <body class="container">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Temperature summary of the selected month and year
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <h1>New York City Weather Analysis</h1>
 
     <label>Select:</label>
@@ -165,7 +200,13 @@
     <!-- Input field for entering the year -->
     <label for="year-input">Enter Year (1912-2023):</label>
     <input type="number" id="year-input" min="1912" max="2023" />
-    <button onclick="getHistoricalDataByMonth()">Get Historical Data</button>
+    <button
+      onclick="fetchData()"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Get Historical Data
+    </button>
     <!-- Display historical data -->
     <h2>Historical Data</h2>
     <div id="historical-data"></div>
