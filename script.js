@@ -42,7 +42,7 @@ function populateSeasonal() {
       yaxis: { title: { text: param } },
     };
     Plotly.newPlot("bar2", data, layout);
-  }, 4000);
+  }, 1000);
 }
 
 function getCheckedBoxes(chkboxClassName) {
