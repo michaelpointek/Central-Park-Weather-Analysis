@@ -1,20 +1,38 @@
-populatePlot("tmin");
+// get data url
+const dataURL = "http://127.0.0.1:5000/"
 
-function populatePlot(value) {
-  const url = "http://127.0.0.1:5000/api/annual-average/" + value;
+// fetch json data and console log it
+d3.json(dataURL).then(function(dataURL) {
+    console.log(dataURL)
+});
 
-  d3.json(url).then(function (result) {
-    let data = [
-      {
-        x: result.Year,
-        y: result.Average,
-      },
-    ];
-    let layout = {
-      title: "Annual average of 154 years",
-      xaxis: { title: { text: "Year" } },
-      yaxis: { title: { text: "Temperature (Fahrenheit)" } },
-    };
-    Plotly.newPlot("bar", data, layout);
-  });
+// Function to fetch historical data by month
+function getHistoricalDataByMonth(month, year) {
+    fetch(`http://localhost:5000/historical-data-by-month?month=${month}&year=${year}`)
+        .then(response => response.json())
+        .then(dataURL => {
+            // Process and display historical data
+            console.log(dataURL);
+        })
+        .catch(error => console.error('Error fetching historical data:', error));
 }
+
+// Function to filter data by temperature range
+function filterData(minTemp, maxTemp) {
+    fetch(`http://localhost:5000/data-filtering?min_temp=${minTemp}&max_temp=${maxTemp}`)
+        .then(response => response.json())
+        .then(dataURL => {
+            // Process and display filtered data
+            console.log(dataURL);
+        })
+        .catch(error => console.error('Error filtering data:', error));
+}
+
+// Function to generate bar graph visualization
+fetch("http://localhost:5000/bar-graph")
+    .then(response => response.json())
+    .then(dataURL => {
+        // Process and display bar graph
+        console.log(dataURL);
+    })
+    .catch(error => console.error('Error generating bar graph:', error));
