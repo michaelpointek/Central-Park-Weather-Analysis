@@ -23,25 +23,26 @@ function populateSeasonal() {
   let seasons = getCheckedBoxes("form-check-input");
   var param = document.querySelector('input[name="flexRadio"]:checked').value;
   console.log("param: " + param + ", seasons: " + seasons);
+
+  data = [];
   seasons.forEach((season) => {
     const url = "http://127.0.0.1:5000/api/seasonal/" + param + "/" + season;
-
     d3.json(url).then(function (result) {
-      let data = [
-        {
-          x: result.year,
-          y: result.average,
-          type: "scatter",
-        },
-      ];
-      let layout = {
-        title: "Average " + param + " of " + season,
-        xaxis: { title: { text: "Year" } },
-        yaxis: { title: { text: param } },
-      };
-      Plotly.newPlot("bar2", data, layout);
+      data.push({
+        x: result.year,
+        y: result.average,
+        type: "scatter",
+      });
     });
   });
+  setTimeout(() => {
+    let layout = {
+      title: "Average " + param + " of " + seasons,
+      xaxis: { title: { text: "Year" } },
+      yaxis: { title: { text: param } },
+    };
+    Plotly.newPlot("bar2", data, layout);
+  }, 4000);
 }
 
 function getCheckedBoxes(chkboxClassName) {
