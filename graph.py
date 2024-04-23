@@ -36,7 +36,7 @@ def get_data():
 data = get_data()
 precipitation = []
 decades = []
-decade_spring_averages = []
+decade_precipitation_spring_averages = []
 spring_months = ["03","04","05"]
 for i in range(0, len(data), 3650):
     running_sum = 0
@@ -49,10 +49,10 @@ for i in range(0, len(data), 3650):
             print(data[j]["Precipitation"])
     year,month,day = str(data[i]["Date"]).split("-")
     decades.append(year)
-    decade_spring_averages.append(running_sum / 3650)
-print(decade_spring_averages)
-plt.plot(decades, decade_spring_averages) 
-plt.xlabel("Year")
+    decade_precipitation_spring_averages.append(running_sum / 3650)
+print(decade_precipitation_spring_averages)
+plt.plot(decades, decade_precipitation_spring_averages) 
+plt.xlabel("Spring by Decades")
 plt.ylabel("Average Precipitation")
 plt.show()
 
@@ -60,7 +60,7 @@ plt.show()
 data = get_data()
 precipitation = []
 decades = []
-decade_summer_averages = []
+decade_precipitation_summer_averages = []
 summer_months = ["06","07","08"]
 for i in range(0, len(data), 3650):
     running_sum = 0
@@ -73,10 +73,10 @@ for i in range(0, len(data), 3650):
             print(data[j]["Precipitation"])
     year,month,day = str(data[i]["Date"]).split("-")
     decades.append(year)
-    decade_summer_averages.append(running_sum / 3650)
-print(decade_summer_averages)
-plt.plot(decades, decade_summer_averages) 
-plt.xlabel("Year")
+    decade_precipitation_summer_averages.append(running_sum / 3650)
+print(decade_precipitation_summer_averages)
+plt.plot(decades, decade_precipitation_summer_averages) 
+plt.xlabel("Summer by Decades")
 plt.ylabel("Average Precipitation")
 plt.show()
 
@@ -84,7 +84,7 @@ plt.show()
 data = get_data()
 precipitation = []
 decades = []
-decade_fall_averages = []
+decade_precipitation_fall_averages = []
 fall_months = ["09","10","11"]
 for i in range(0, len(data), 3650):
     running_sum = 0
@@ -97,10 +97,10 @@ for i in range(0, len(data), 3650):
             print(data[j]["Precipitation"])
     year,month,day = str(data[i]["Date"]).split("-")
     decades.append(year)
-    decade_fall_averages.append(running_sum / 3650)
-print(decade_fall_averages)
-plt.plot(decades, decade_fall_averages) 
-plt.xlabel("Year")
+    decade_precipitation_fall_averages.append(running_sum / 3650)
+print(decade_precipitation_fall_averages)
+plt.plot(decades, decade_precipitation_fall_averages) 
+plt.xlabel("Fall by Decades")
 plt.ylabel("Average Precipitation")
 plt.show()
 
@@ -108,7 +108,7 @@ plt.show()
 data = get_data()
 precipitation = []
 decades = []
-decade_winter_averages = []
+decade_precipitation_winter_averages = []
 winter_months = ["12","01","02"]
 for i in range(0, len(data), 3650):
     running_sum = 0
@@ -121,11 +121,109 @@ for i in range(0, len(data), 3650):
             print(data[j]["Precipitation"])
     year,month,day = str(data[i]["Date"]).split("-")
     decades.append(year)
-    decade_winter_averages.append(running_sum / 3650)
-print(decade_winter_averages)
-plt.plot(decades, decade_winter_averages) 
-plt.xlabel("Year")
+    decade_precipitation_winter_averages.append(running_sum / 3650)
+print(decade_precipitation_winter_averages)
+plt.plot(decades, decade_precipitation_winter_averages) 
+plt.xlabel("Winter by Decades")
 plt.ylabel("Average Precipitation")
+plt.show()
+
+#snow over the seasons of decades 
+
+# snow over the years spring
+data = get_data()
+snow = []
+decades = []
+decade_snow_spring_averages = []
+spring_months = ["03","04","05"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Snow"]
+        if month in spring_months:
+            snow.append(data[j]["Snow"])
+            print(data[j]["Snow"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_snow_spring_averages.append(running_sum / 3650)
+print(decade_snow_spring_averages)
+plt.plot(decades, decade_snow_spring_averages) 
+plt.xlabel("Spring by Decades")
+plt.ylabel("Average Snow")
+plt.show()
+
+# snow over the years summer
+data = get_data()
+snow = []
+decades = []
+decade_snow_summer_averages = []
+summer_months = ["06","07","08"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Snow"]
+        if month in summer_months:
+            snow.append(data[j]["Snow"])
+            print(data[j]["Snow"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_snow_summer_averages.append(running_sum / 3650)
+print(decade_snow_summer_averages)
+plt.plot(decades, decade_snow_summer_averages) 
+plt.xlabel("Summer by Decades")
+plt.ylabel("Average Snow")
+plt.show()
+
+# snow over the years fall
+data = get_data()
+fall = []
+decades = []
+decade_snow_fall_averages = []
+fall_months = ["09","10","11"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Snow"]
+        if month in fall_months:
+            snow.append(data[j]["Snow"])
+            print(data[j]["Snow"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_snow_fall_averages.append(running_sum / 3650)
+print(decade_snow_fall_averages)
+plt.plot(decades, decade_snow_fall_averages) 
+plt.xlabel("Fall by Decades")
+plt.ylabel("Average Snow")
+plt.show()
+
+# snow over the years winter
+data = get_data()
+winter = []
+decades = []
+decade_snow_winter_averages = []
+winter_months = ["12","01","02"]
+for i in range(0, len(data), 3650):
+    running_sum = 0
+    end = len(data) if len(data)<i+3650 else i+3650
+    for j in range(i, end):
+        year,month,day = str(data[j]["Date"]).split("-")
+        running_sum += data[j]["Snow"]
+        if month in winter_months:
+            snow.append(data[j]["Snow"])
+            print(data[j]["Snow"])
+    year,month,day = str(data[i]["Date"]).split("-")
+    decades.append(year)
+    decade_snow_winter_averages.append(running_sum / 3650)
+print(decade_snow_winter_averages)
+plt.plot(decades, decade_snow_winter_averages) 
+plt.xlabel("Winter by Decades")
+plt.ylabel("Average Snow")
 plt.show()
 
 # for entry in data:
