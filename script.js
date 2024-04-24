@@ -32,6 +32,7 @@ function populateSeasonal() {
         x: result.year,
         y: result.average,
         type: "scatter",
+        name: season,
       });
     });
   });
@@ -96,14 +97,5 @@ function fetchData() {
                 <p>Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F</p>
                 <p>Highest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F</p>
             `;
-      new bootstrap.Modal(document.getElementById("temperature-modal")).show();
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
     });
 }
-// Call fetchData function when the button is clicked
-document.getElementById("fetch-data-btn").addEventListener("click", fetchData);
