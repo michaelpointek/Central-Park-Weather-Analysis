@@ -59,7 +59,7 @@ function fetchData() {
                   }
               });
               // try to edit to get a better popup
-              alert(`Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F\nHighest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F`);
+              // alert(`Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F\nHighest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F`);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
