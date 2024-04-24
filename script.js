@@ -82,6 +82,7 @@ function populateSeasonal() {
         x: result.year,
         y: result.average,
         type: "scatter",
+        name: season,
       });
     });
   });
@@ -146,5 +147,5 @@ function fetchData() {
                 <p>Lowest Temperature Day: ${selectedMonth}/${minTempDay} ${minTemp}°F</p>
                 <p>Highest Temperature Day: ${selectedMonth}/${maxTempDay} ${maxTemp}°F</p>
             `;
-         })
-};
+    });
+}
