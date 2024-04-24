@@ -91,24 +91,24 @@ function populateSeasonal() {
   let paramName = "";
   switch (param) {
     case "prcp":
-      paramName = "Precipitation";
+      paramName = "Precipitation in inches";
       break;
     case "snow":
-      paramName = "Snowfall";
+      paramName = "Snowfall in inches";
       break;
     case "snwd":
-      paramName = "Snow Accumulation";
+      paramName = "Snow Depth in inches";
       break;
     case "tmin":
-      paramName = "Temperature(min)";
+      paramName = "Minimum Temperature(F)";
       break;
     case "tmax":
-      paramName = "Temperature(max)";
+      paramName = "Maximum Temperature(F)";
       break;
   }
   setTimeout(() => {
     let layout = {
-      title: "Average " + paramName + " of " + seasons,
+      title: "Average " + paramName + " of " + seasons.join(", "),
       xaxis: { title: { text: "Year" } },
       yaxis: { title: { text: param } },
     };
