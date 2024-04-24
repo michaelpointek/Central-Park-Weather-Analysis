@@ -1,1 +1,1 @@
-conn="postgresql://postgres:postgres@localhost:5432/Project3"
+conn="postgresql://postgres:postgres@localhost:5432/project_3"
