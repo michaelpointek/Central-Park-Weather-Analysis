@@ -17,7 +17,7 @@ function populatePlot(value) {
       },
     ];
     let layout = {
-      title: "Annual average of 154 years",
+      title: "Annual average of 110 years",
       xaxis: { title: { text: "Year" } },
       yaxis: { title: { text: "Temperature (Fahrenheit)" } },
     };
