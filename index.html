@@ -26,7 +26,7 @@
     <div class="container" style="margin: auto; width: 800px">
       <div class="jumbotron" style="text-align: center">
         <h1 class="display-5">New York City Weather Analysis</h1>
-        <h1 class="display-6">(1912 to 2022)</h1>
+        <h1 class="display-6">(1869 to 2022)</h1>
         <p class="lead">
           <!-- This is a simple hero unit, a simple jumbotron-style component for
           calling extra attention to featured content or information. -->
@@ -121,7 +121,7 @@
                 Snowfall(in)
               </label>
             </div>
-            <div class="form-check">
+            <!-- <div class="form-check">
               <input
                 value="snwd"
                 type="radio"
@@ -131,7 +131,7 @@
               <label class="form-check-label" for="flexRadioDefault2">
                 Snow Depth(in)
               </label>
-            </div>
+            </div> -->
             <div class="form-check">
               <input
                 value="tmin"
@@ -190,8 +190,8 @@
         </select>
 
         <!-- Input field for entering the year -->
-        <label for="year-input">Enter Year (1912-2023):</label>
-        <input type="number" id="year-input" min="1912" max="2023" />
+        <label for="year-input">Enter Year (1869-2023):</label>
+        <input type="number" id="year-input" min="1869" max="2023" />
         <button
           onclick="fetchData()"
           data-bs-toggle="modal"

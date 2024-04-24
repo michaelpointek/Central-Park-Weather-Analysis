@@ -17,7 +17,7 @@ function populatePlot(value) {
       },
     ];
     let layout = {
-      title: "Annual average of 110 years",
+      title: "Annual average of 154 years",
       xaxis: { title: { text: "Year" } },
       yaxis: { title: { text: "Temperature (Fahrenheit)" } },
     };
@@ -95,9 +95,6 @@ function populateSeasonal() {
       break;
     case "snow":
       paramName = "Snowfall in inches";
-      break;
-    case "snwd":
-      paramName = "Snow Depth in inches";
       break;
     case "tmin":
       paramName = "Minimum Temperature(F)";
