@@ -19,287 +19,223 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body class="container">
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Temperature summary of the selected month and year
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+  <body">
+    <div class="container" style="margin: auto; width: 800px">
+      <div class="jumbotron" style="text-align: center">
+        <h1 class="display-5">New York City Weather Analysis</h1>
+        <h1 class="display-6">(1912 to 2022)</h1>
+        <p class="lead">
+          This is a simple hero unit, a simple jumbotron-style component for
+          calling extra attention to featured content or information.
+        </p>
+      </div>
+      <section>
+        <label>Select:</label>
+        <select id="annual-avg" onchange="populatePlot(this.value)">
+          <option value="tmin">Average Min</option>
+          <option value="tmax">Average Max</option>
+        </select>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="bar"></div>
           </div>
-          <div class="modal-body" id="modal-body">...</div>
-          <div class="modal-footer">
+        </div>
+      </section>
+      <section>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="winter"
+                id="flexCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Winter
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="spring"
+                id="flexCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Spring
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="summer"
+                id="flexCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Summer
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="fall"
+                id="flexCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Fall
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-check">
+              <input
+                value="prcp"
+                type="radio"
+                name="flexRadio"
+                id="flexRadioDefault1"
+                checked
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                prcp
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                value="snow"
+                type="radio"
+                name="flexRadio"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                snow
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                value="snwd"
+                type="radio"
+                name="flexRadio"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                snwd
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                value="tmin"
+                type="radio"
+                name="flexRadio"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                tmin
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                value="tmax"
+                type="radio"
+                name="flexRadio"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                tmax
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3">
             <button
               type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+              class="btn btn-primary"
+              onclick="populateSeasonal()"
             >
-              Close
+              Plot
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
-      </div>
-    </div>
-    <h1>New York City Weather Analysis</h1>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="bar2"></div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <!-- Dropdown for selecting month -->
+        <label for="month-select">Select Month:</label>
+        <select id="month-select">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
 
-    <label>Select:</label>
-    <select id="annual-avg" onchange="populatePlot(this.value)">
-      <option value="tmin">Average Min</option>
-      <option value="tmax">Average Max</option>
-    </select>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bar"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value="winter"
-            id="flexCheckChecked"
-            checked
-          />
-          <label class="form-check-label" for="flexCheckChecked">
-            Winter
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value="spring"
-            id="flexCheckChecked"
-            checked
-          />
-          <label class="form-check-label" for="flexCheckChecked">
-            Spring
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value="summer"
-            id="flexCheckChecked"
-            checked
-          />
-          <label class="form-check-label" for="flexCheckChecked">
-            Summer
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value="fall"
-            id="flexCheckChecked"
-            checked
-          />
-          <label class="form-check-label" for="flexCheckChecked"> Fall </label>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-check">
-          <input
-            value="prcp"
-            type="radio"
-            name="flexRadio"
-            id="flexRadioDefault1"
-            checked
-          />
-          <label class="form-check-label" for="flexRadioDefault1"> prcp </label>
-        </div>
-        <div class="form-check">
-          <input
-            value="snow"
-            type="radio"
-            name="flexRadio"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault2"> snow </label>
-        </div>
-        <div class="form-check">
-          <input
-            value="snwd"
-            type="radio"
-            name="flexRadio"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault2"> snwd </label>
-        </div>
-        <div class="form-check">
-          <input
-            value="tmin"
-            type="radio"
-            name="flexRadio"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault2"> tmin </label>
-        </div>
-        <div class="form-check">
-          <input
-            value="tmax"
-            type="radio"
-            name="flexRadio"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault2"> tmax </label>
-        </div>
-      </div>
-      <div class="col-md-3">
+        <!-- Input field for entering the year -->
+        <label for="year-input">Enter Year (1912-2023):</label>
+        <input type="number" id="year-input" min="1912" max="2023" />
         <button
-          type="button"
-          class="btn btn-primary"
-          onclick="populateSeasonal()"
+          onclick="fetchData()"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
-          Plot
+          Get Historical Data
         </button>
-      </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Temperature summary of the selected month and year
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" id="modal-body">...</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="/script.js"></script>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bar2"></div>
-      </div>
-    </div>
-    <!-- Dropdown for selecting month -->
-    <label for="month-select">Select Month:</label>
-    <select id="month-select">
-      <option value="1">January</option>
-      <option value="2">February</option>
-      <option value="3">March</option>
-      <option value="4">April</option>
-      <option value="5">May</option>
-      <option value="6">June</option>
-      <option value="7">July</option>
-      <option value="8">August</option>
-      <option value="9">September</option>
-      <option value="10">October</option>
-      <option value="11">November</option>
-      <option value="12">December</option>
-    </select>
-
-    <!-- Input field for entering the year -->
-    <label for="year-input">Enter Year (1912-2023):</label>
-    <input type="number" id="year-input" min="1912" max="2023" />
-    <button
-      onclick="fetchData()"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Get Historical Data
-    </button>
-    <!-- Display historical data -->
-    <h2>Historical Data</h2>
-    <div id="historical-data"></div>
-
-    <!-- Display summary statistics -->
-    <h2>Summary Statistics</h2>
-    <div id="summary-stats"></div>
-
-    <!-- Filter data by temperature range -->
-    <h2>Data Filtering</h2>
-    <form id="filter-form">
-      <label for="min-temp">Minimum Temperature:</label>
-      <input type="number" id="min-temp" name="min-temp" /><br />
-      <label for="max-temp">Maximum Temperature:</label>
-      <input type="number" id="max-temp" name="max-temp" /><br />
-      <button type="button" onclick="filterData()">Filter Data</button>
-    </form>
-    <div id="filtered-data"></div>
-
-    <!-- Display bar graph visualization -->
-    <h2>Bar Graph Visualization</h2>
-    <canvas id="bar-graph"></canvas>
-    <!-- <script>
-      // Function to fetch historical data by month
-      function getHistoricalDataByMonth() {
-        const month = document.getElementById("month-select").value;
-        const year = document.getElementById("year-input").value;
-        fetch(`/historical-data-by-month?month=${month}&year=${year}`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Process and display historical data
-            document.getElementById("historical-data").innerText =
-              JSON.stringify(data);
-          })
-          .catch((error) =>
-            console.error("Error fetching historical data:", error)
-          );
-      }
-      // Function to fetch summary statistics
-      fetch("/summary-statistics")
-        .then((response) => response.json())
-        .then((data) => {
-          // Process and display summary statistics
-          document.getElementById("summary-stats").innerText =
-            JSON.stringify(data);
-        })
-        .catch((error) =>
-          console.error("Error fetching summary statistics:", error)
-        );
-      // Function to filter data by temperature range
-      function filterData() {
-        const minTemp = document.getElementById("min-temp").value;
-        const maxTemp = document.getElementById("max-temp").value;
-        fetch(`/data-filtering?min_temp=${minTemp}&max_temp=${maxTemp}`)
-          .then((response) => response.json())
-          .then((data) => {
-            // Process and display filtered data
-            document.getElementById("filtered-data").innerText =
-              JSON.stringify(data);
-          })
-          .catch((error) => console.error("Error filtering data:", error));
-      }
-      // Function to generate bar graph visualization
-      fetch("/bar-graph")
-        .then((response) => response.json())
-        .then((data) => {
-          // Process and display bar graph
-          const ctx = document.getElementById("bar-graph").getContext("2d");
-          new Chart(ctx, {
-            type: "bar",
-            data: {
-              labels: data.labels,
-              datasets: [
-                {
-                  label: "Average Maximum Temperature by Month",
-                  data: data.values,
-                  backgroundColor: "rgba(54, 162, 235, 0.2)",
-                  borderColor: "rgba(54, 162, 235, 1)",
-                  borderWidth: 1,
-                },
-              ],
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                },
-              },
-            },
-          });
-        })
-        .catch((error) => console.error("Error generating bar graph:", error));
-    </script> -->
-    <script src="/script.js"></script>
   </body>
 </html>
