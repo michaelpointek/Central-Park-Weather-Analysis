@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 # Database Setup
-connection_string = "postgresql://postgres:postgres@localhost:5432/project_3"
+connection_string = "postgresql://postgres:postgres@localhost:5432/Project3"
 engine = create_engine(connection_string)
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -120,7 +120,7 @@ def seasonal_data(param, season):
     if season=="winter": months = "12, 1, 2"
     if season=="spring": months = "3, 4, 5"
     if season =="summer": months = "6, 7, 8"
-    if season =="fall": months = "9, 10, 1"
+    if season =="fall": months = "9, 10, 11"
 
     query = text("SELECT year, AVG(" + param + ") AS avg FROM ny_weather_data_set WHERE month IN (" + months + ") GROUP BY year order by year asc;")
     conn = engine.connect();
@@ -132,6 +132,29 @@ def seasonal_data(param, season):
         year.append(i.year)
         avg.append(i.avg)
     return jsonify({"year": year, "average":avg})
+
+@app.route("/api/get-avg-year/<year>")
+@cross_origin(supports_credentials=True)
+def get_year_avg(year):
+    conn = engine.connect()
+    maxYear = int(year)+9
+    maxYear = str(maxYear)
+    print(type(maxYear))
+    # query="select avg(prcp) as prcp, avg(snow) as snow, cast(avg(tmin) as float) as tmin, cast(avg(tmax) as float) as tmax from ny_weather_data_set where year>" + year + " and year<" + maxYear
+    query=f"""SELECT (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (12, 1, 2) AND year > {year} AND year < {maxYear}) AS winter,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (3, 4, 5) AND year > {year} AND year < {maxYear}) AS spring,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (6, 7, 8) AND year > {year} AND year < {maxYear}) AS summer,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (9, 10, 11) AND year > {year} AND year < {maxYear}) AS fall;"""
+    print("query: " + query)
+    results = conn.execute(text(query))
+    
+    average = []
+    for result in results:
+        average.append(result.winter)
+        average.append(result.spring)
+        average.append(result.summer)
+        average.append(result.fall)
+    return jsonify({"Average":average})
 
 if __name__ == '__main__':
     app.run(debug=False)
