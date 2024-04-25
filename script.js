@@ -201,12 +201,7 @@ function compare2years() {
       console.log(result1.Average);
       console.log(result2.Average);
       var marksData = {
-        labels: [
-          "Percipitation",
-          "Snowfall",
-          "Temperature(min)",
-          "Temperature(max)",
-        ],
+        labels: ["Winter", "Spring", "Summer", "Fall"],
         datasets: [
           {
             label: decade1,

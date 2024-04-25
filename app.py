@@ -140,15 +140,20 @@ def get_year_avg(year):
     maxYear = int(year)+9
     maxYear = str(maxYear)
     print(type(maxYear))
-    query="select avg(prcp) as prcp, avg(snow) as snow, cast(avg(tmin) as float) as tmin, cast(avg(tmax) as float) as tmax from ny_weather_data_set where year>" + year + " and year<" + maxYear
+    # query="select avg(prcp) as prcp, avg(snow) as snow, cast(avg(tmin) as float) as tmin, cast(avg(tmax) as float) as tmax from ny_weather_data_set where year>" + year + " and year<" + maxYear
+    query=f"""SELECT (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (12, 1, 2) AND year > {year} AND year < {maxYear}) AS winter,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (3, 4, 5) AND year > {year} AND year < {maxYear}) AS spring,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (6, 7, 8) AND year > {year} AND year < {maxYear}) AS summer,
+    (SELECT AVG(tmax) AS temp FROM ny_weather_data_set WHERE month IN (9, 10, 11) AND year > {year} AND year < {maxYear}) AS fall;"""
+    print("query: " + query)
     results = conn.execute(text(query))
     
     average = []
     for result in results:
-        average.append(result.prcp)
-        average.append(result.snow)
-        average.append(result.tmin)
-        average.append(result.tmax)
+        average.append(result.winter)
+        average.append(result.spring)
+        average.append(result.summer)
+        average.append(result.fall)
     return jsonify({"Average":average})
 
 if __name__ == '__main__':
