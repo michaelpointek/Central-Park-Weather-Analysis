@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 # Database Setup
-connection_string = "postgresql://postgres:postgres@localhost:5432/Project3"
+connection_string = "postgresql://postgres:postgres@localhost:5432/project_3"
 engine = create_engine(connection_string)
 Base = automap_base()
 Base.prepare(engine, reflect=True)
