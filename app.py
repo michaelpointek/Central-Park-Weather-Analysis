@@ -120,7 +120,7 @@ def seasonal_data(param, season):
     if season=="winter": months = "12, 1, 2"
     if season=="spring": months = "3, 4, 5"
     if season =="summer": months = "6, 7, 8"
-    if season =="fall": months = "9, 10, 1"
+    if season =="fall": months = "9, 10, 11"
 
     query = text("SELECT year, AVG(" + param + ") AS avg FROM ny_weather_data_set WHERE month IN (" + months + ") GROUP BY year order by year asc;")
     conn = engine.connect();
