@@ -144,16 +144,17 @@ function fetchData() {
       let maxTempDay = "";
       // Iterate through each day object in the data array
       data.forEach((day) => {
-        const temperature = day["Maximum Temperature"];
+        const temperatureh = day["Maximum Temperature"];
+        const temperaturel = day["Minimum Temperature"];
         const dayNumber = day["Day"];
         // Update minimum temperature if current temperature is lower
-        if (temperature < minTemp) {
-          minTemp = temperature;
+        if (temperaturel < minTemp) {
+          minTemp = temperaturel;
           minTempDay = dayNumber;
         }
         // Update maximum temperature if current temperature is higher
-        if (temperature > maxTemp) {
-          maxTemp = temperature;
+        if (temperatureh > maxTemp) {
+          maxTemp = temperatureh;
           maxTempDay = dayNumber;
         }
       });
