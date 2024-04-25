@@ -169,3 +169,78 @@ function fetchData() {
             `;
     });
 }
+
+function compare2years() {
+  var marksCanvas = document.getElementById("marksChart");
+  const decade1 = document.getElementById("decade-1").value;
+  const decade2 = document.getElementById("decade-2").value;
+  const url1 = "http://127.0.0.1:5000/api/get-avg-year/" + decade1;
+  const url2 = "http://127.0.0.1:5000/api/get-avg-year/" + decade2;
+
+  d3.json(url1).then(function (result1) {
+    d3.json(url2).then(function (result2) {
+      const chartData = document.getElementById("chart-data");
+      chartData.innerHTML = `
+      <div class="row" style="background-color: #d1d0d0; border-radius: 10px;">
+      <div class="col-md-6">
+                <div>${decade1} : </div>
+                <li>prcp: ${result1.Average[0]}</li>
+                <li>snow: ${result1.Average[1]}</li>
+                <li>T(min): ${result1.Average[2]}</li>
+                <li>T(max): ${result1.Average[3]}</li> 
+                </div>
+                <div class="col-md-6">
+                <div>${decade2} : </div>
+                <li>prcp: ${result2.Average[0]}</li>
+                <li>snow: ${result2.Average[1]}</li>
+                <li>T(min): ${result2.Average[2]}</li>
+                <li>T(max): ${result2.Average[3]}</li> 
+                </div>
+                </div>
+          `;
+      console.log(result1.Average);
+      console.log(result2.Average);
+      var marksData = {
+        labels: [
+          "Percipitation",
+          "Snowfall",
+          "Temperature(min)",
+          "Temperature(max)",
+        ],
+        datasets: [
+          {
+            label: decade1,
+            backgroundColor: "rgba(200,0,0,0.2)",
+            data: result1.Average,
+          },
+          {
+            label: decade2,
+            backgroundColor: "rgba(0,0,200,0.2)",
+            data: result2.Average,
+          },
+        ],
+      };
+
+      radarChart = new Chart(marksCanvas, {
+        type: "radar",
+        data: marksData,
+        options: {
+          // scale: {
+          //   ticks: {
+          //     beginAtZero: true,
+          //     max: 5,
+          //     min: 0,
+          //     stepSize: 0.1,
+          //   },
+          // },
+          elements: {
+            line: {
+              borderWidth: 3,
+            },
+          },
+        },
+      });
+    });
+  });
+  if (radarChart) radarChart.destroy();
+}

@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 # Database Setup
-connection_string = "postgresql://postgres:postgres@localhost:5432/project_3"
+connection_string = "postgresql://postgres:postgres@localhost:5432/Project3"
 engine = create_engine(connection_string)
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -132,6 +132,24 @@ def seasonal_data(param, season):
         year.append(i.year)
         avg.append(i.avg)
     return jsonify({"year": year, "average":avg})
+
+@app.route("/api/get-avg-year/<year>")
+@cross_origin(supports_credentials=True)
+def get_year_avg(year):
+    conn = engine.connect()
+    maxYear = int(year)+9
+    maxYear = str(maxYear)
+    print(type(maxYear))
+    query="select avg(prcp) as prcp, avg(snow) as snow, cast(avg(tmin) as float) as tmin, cast(avg(tmax) as float) as tmax from ny_weather_data_set where year>" + year + " and year<" + maxYear
+    results = conn.execute(text(query))
+    
+    average = []
+    for result in results:
+        average.append(result.prcp)
+        average.append(result.snow)
+        average.append(result.tmin)
+        average.append(result.tmax)
+    return jsonify({"Average":average})
 
 if __name__ == '__main__':
     app.run(debug=False)
