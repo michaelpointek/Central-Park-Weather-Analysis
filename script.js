@@ -184,17 +184,17 @@ function compare2years() {
       <div class="row" style="background-color: #d1d0d0; border-radius: 10px;">
       <div class="col-md-6">
                 <div>${decade1} : </div>
-                <li>prcp: ${result1.Average[0]}</li>
-                <li>snow: ${result1.Average[1]}</li>
-                <li>T(min): ${result1.Average[2]}</li>
-                <li>T(max): ${result1.Average[3]}</li> 
+                <li>winter: ${result1.Average[0]}</li>
+                <li>spring: ${result1.Average[1]}</li>
+                <li>summer: ${result1.Average[2]}</li>
+                <li>fall: ${result1.Average[3]}</li> 
                 </div>
                 <div class="col-md-6">
                 <div>${decade2} : </div>
-                <li>prcp: ${result2.Average[0]}</li>
-                <li>snow: ${result2.Average[1]}</li>
-                <li>T(min): ${result2.Average[2]}</li>
-                <li>T(max): ${result2.Average[3]}</li> 
+                <li>winter: ${result2.Average[0]}</li>
+                <li>spring: ${result2.Average[1]}</li>
+                <li>summer: ${result2.Average[2]}</li>
+                <li>fall: ${result2.Average[3]}</li> 
                 </div>
                 </div>
           `;
