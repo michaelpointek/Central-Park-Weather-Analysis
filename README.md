@@ -1,6 +1,6 @@
 #  Project 3 - New York Weather Analysis
-Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan 
-Project Track: Data Visualization
+- Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan 
+- Project Track: Data Visualization
 ## Overview and Purpose
 - Paragraph 
 ## Visuals: 
