@@ -7,7 +7,7 @@
 <img width="631" alt="Screen Shot 2024-04-25 at 7 31 51 PM" src="https://github.com/michaelpointek/project3/assets/57199813/af99290a-d797-48b0-b582-9f8c5807e5ea">
 
 ### Visual 1 - Annual Average Minimum and Maximum Temperatures
- - Paragraph describing and how to use. 
+ - Using the drop down tab, the user can chose to view either the average minimum temperature graph or the average maximum temperature graph. Each graph shows the average minimum/maximum temperatures for each year over a 154 year period. 
  
 ### Visual 2 - Average Seasonal Weather Phenomena 
  - Paragraph describing and how to use. 
