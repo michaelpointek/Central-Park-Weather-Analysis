@@ -15,7 +15,7 @@
 <img width="602" alt="Screen Shot 2024-04-25 at 7 32 28 PM" src="https://github.com/michaelpointek/project3/assets/57199813/bc2b0d45-9e84-41de-9cbf-fe08a1b74c34">
 
 ### Visual 3 - Min/Max Temperature by Month: Interactive Popup
- - Paragraph describing and how to use. 
+ - User selects a month from the dropdown menu and then inputs a year (1912-2023). A popup will then show the minimum and maximum temperature days for that month in that year. The visual allows the user to narrow down min/max temperature data to a specific month, providing a closer look at temperature extremes. 
 
 <img width="838" alt="Screen Shot 2024-04-25 at 7 32 40 PM" src="https://github.com/michaelpointek/project3/assets/57199813/6235a3af-cd37-4cdf-96f7-7c39a144b1e2">
 
