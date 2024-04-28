@@ -10,7 +10,7 @@
  - Using the drop down tab, the user can chose to view either the average minimum temperature graph or the average maximum temperature graph. Each graph shows the average minimum/maximum temperatures for each year over a 154 year period. 
  
 ### Visual 2 - Average Seasonal Weather Phenomena 
- - Paragraph describing and how to use. 
+ - This visual shows seasonal data revolving around different weather phenomena. The user can select the check boxes on the right hand side to view the data for one, two, three, or all four seasons. They may then select from the list of weather phenomena they want to view on the plot (average precipitation, average snowfall, average minimum temp, average maximum temp). The graph then plots the data with each colored line representing the data for the weather phenomena of choice for the selected season(s). 
 
 <img width="602" alt="Screen Shot 2024-04-25 at 7 32 28 PM" src="https://github.com/michaelpointek/project3/assets/57199813/bc2b0d45-9e84-41de-9cbf-fe08a1b74c34">
 
