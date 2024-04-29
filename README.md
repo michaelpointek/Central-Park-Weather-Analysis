@@ -2,7 +2,7 @@
 - Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan 
 - Project Track: Data Visualization
 ## Overview and Purpose
-- Paragraph 
+- Our primary goal was to examine the climate shift in Central Park over the past 154 years. We made a decision to exclude data related to snow accumulation as this was not tracked or available until 1912 so we felt it would not be a fair or accurate representation compared to the entire dataset. Through our research and analysis, we aimed to uncover trends and patterns that could provide valuable insights into the impacts of climate change. 
 ## Visuals: 
 <img width="631" alt="Screen Shot 2024-04-25 at 7 31 51 PM" src="https://github.com/michaelpointek/project3/assets/57199813/af99290a-d797-48b0-b582-9f8c5807e5ea">
 
