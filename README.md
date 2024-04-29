@@ -1,5 +1,5 @@
 #  Project 3 - New York Weather Analysis
-- Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan Mayvlle
+- Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan Mayville
 - Project Track: Data Visualization
 ## Overview and Purpose
 - Our primary goal was to examine the climate shift in Central Park over the past 154 years. We made a decision to exclude data related to snow accumulation as this was not tracked or available until 1912 so we felt it would not be a fair or accurate representation compared to the entire dataset. Through our research and analysis, we aimed to uncover trends and patterns that could provide valuable insights into the impacts of climate change. 
@@ -25,7 +25,7 @@
 ## Efforts and Ethical Considerations 
 Our dataset consists of weather observations collected by the National Weather Service, with records dating back to 1869 in Central Park. Since 1920, measurements have been taken at Belvedere Castle by an automated station. While most data is consistently recorded, snow accumulation data, which began in 1912, is excluded from our analysis due to potential inconsistencies. Although the station is automated, snowfall measurements were manually taken with a ruler, which could have varied in different parts of the city. As the data is collected from a single station, it's possible that nearby weather variations may affect its accuracy slightly. Factors such as urbanization and population growth could influence temperature readings. We've strived for accuracy by excluding less reliable factors from our analysis, ensuring the dataset's accountability while maintaining a focus on the most accurate data available.
 
-## Refrences 
+## References 
 - Original data source: https://www.kaggle.com/datasets/danbraswell/new-york-city-weather-18692022/data
 - https://www.chartjs.org/
 - ChatGPT and additonal AI tools assisted in some of the code.  
