@@ -26,6 +26,6 @@
 - Paragraph
 
 ## Refrences 
-- Link to original data source
+- Original data source: https://www.kaggle.com/datasets/danbraswell/new-york-city-weather-18692022/data
 - Mention chartjs, etc. 
 - ChatGPT and additonal AI tools assisted in some of the code.  
