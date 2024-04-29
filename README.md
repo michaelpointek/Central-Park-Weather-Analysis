@@ -1,5 +1,5 @@
 #  Project 3 - New York Weather Analysis
-- Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan 
+- Group Members: Michael Pointek, Khali Baasandorj, Victoria Ro, Will Midson, Jordan Mayvlle
 - Project Track: Data Visualization
 ## Overview and Purpose
 - Our primary goal was to examine the climate shift in Central Park over the past 154 years. We made a decision to exclude data related to snow accumulation as this was not tracked or available until 1912 so we felt it would not be a fair or accurate representation compared to the entire dataset. Through our research and analysis, we aimed to uncover trends and patterns that could provide valuable insights into the impacts of climate change. 
