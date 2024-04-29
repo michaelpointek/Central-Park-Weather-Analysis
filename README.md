@@ -20,7 +20,7 @@
 <img width="838" alt="Screen Shot 2024-04-25 at 7 32 40 PM" src="https://github.com/michaelpointek/project3/assets/57199813/6235a3af-cd37-4cdf-96f7-7c39a144b1e2">
 
 ### Visual 4 - Comparison of Maximum Temperatures for Two Selected Decades
- - Paragraph describing and how to use. Mention the new library we used. 
+ - Users can select two distinct decades between 1880 and 2010 using dropdown menus. Utilizing the Chart.js library, a dynamic radar chart vividly illustrates the disparities in average temperatures across the four seasons (winter, spring, summer, fall) between the two chosen decades. This intuitive visualization empowers users to directly compare the average maximum temperature data from two different time periods, facilitating deeper insights into historical climate trends. 
 
 ## Efforts and Ethical Considerations 
 - Paragraph
