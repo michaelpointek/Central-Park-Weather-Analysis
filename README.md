@@ -28,4 +28,7 @@ Our dataset consists of weather observations collected by the National Weather S
 ## References 
 - Original data source: https://www.kaggle.com/datasets/danbraswell/new-york-city-weather-18692022/data
 - https://www.chartjs.org/
-- ChatGPT and additonal AI tools assisted in some of the code.  
+- ChatGPT and additonal AI tools assisted in some of the code.
+
+## Contributions
+Will - Created flask route to access min/max temperature data + java script and html to create a functioning popup (visualization)
