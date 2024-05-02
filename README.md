@@ -32,3 +32,7 @@ Our dataset consists of weather observations collected by the National Weather S
 
 ## Contributions
 Will - Created the /data flask route to access min/max temperature data (app.py lines 54-95) + java script and html to create a functioning popup (visualization 3)
+Jordan - 
+Michael - 
+Khali - 
+Victoria - 
