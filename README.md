@@ -33,6 +33,6 @@ Our dataset consists of weather observations collected by the National Weather S
 ## Contributions
 * Will - Created the /data flask route to access min/max temperature data (app.py lines 54-95) + java script (script.js lines 28-72 (unused), lines 127-169) to create a functioning popup (visualization 3).
 * Jordan - created flask and route for data access from sql database. created flask route for seasons data to create visuals by season. chart.js script for new library visual (unused). assisted with code for visuals and html index page. 
-* Michael - 
+* Michael - Owned repo and managed branches using HTML, JavaScript, and Python. Troubleshooted post-merging conflicts for resolution and functionality. Built database framework, imported data, and cleaned data in postgresql using SQL. Built initial HTML framework for group to use as a starting point. 
 * Khali - 
 * Victoria - 
