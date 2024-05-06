@@ -35,4 +35,4 @@ Our dataset consists of weather observations collected by the National Weather S
 * Jordan - created flask and route for data access from sql database. created flask route for seasons data to create visuals by season. chart.js script for new library visual (unused). assisted with code for visuals and html index page. 
 * Michael - Owned repo and managed branches using HTML, JavaScript, and Python. Troubleshooted post-merging conflicts for resolution and functionality. Built database framework, imported data, and cleaned data in postgresql using SQL. Built initial HTML framework for group to use as a starting point. 
 * Khali - 
-* Victoria - 
+* Victoria - Discovered the CSV dataset that serves as the foundation for our project. Developed a script called graph.py (unused) with the aim of analyzing precipitation trends across decades. Contributed to the README file.
